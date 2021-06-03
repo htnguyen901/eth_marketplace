@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../logo.png';
+import logo from '../logo3.png';
 import './App.css';
 
 class App extends Component {
@@ -13,7 +13,7 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Dapp University
+            TAME Marketplace
           </a>
         </nav>
         <div className="container-fluid mt-5">
@@ -27,7 +27,7 @@ class App extends Component {
                 >
                   <img src={logo} className="App-logo" alt="logo" />
                 </a>
-                <h1>Dapp</h1>
+                <h1>Marketplace</h1>
                 <p>
                   Edit <code>src/components/App.js</code> and save to reload.
                 </p>
