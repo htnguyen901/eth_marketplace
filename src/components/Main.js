@@ -9,7 +9,7 @@ class Main extends Component {
         <h1>Add Product</h1>
         <form onSubmit={(event) => {
           event.preventDefault()
-          const name = this.productName.value
+          const name = this.productName.value // call value because it's a form field
           const price = window.web3.utils.toWei(this.productPrice.value.toString(), 'Ether')
           this.props.createProduct(name, price)
         }}>
