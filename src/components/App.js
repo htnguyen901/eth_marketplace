@@ -43,8 +43,17 @@ class App extends Component {
     if (networkData) {
       const marketplace = web3.eth.Contract(Marketplace.abi, networkData.address)
       this.setState({ marketplace })
-      const productCount = await marketplace.methods.productCount().call()
+      const productCount = await marketplace.methods.productCount.call() //call(): read the data
+      this.setState({ productCount })
+      // Load products
+      for (var i; i <= productCount; i++) {
+        const product = await marketplace.methods.products(i).call() // read the data
+        this.setState({
+          products: [...this.state.products, product] //add the product to the array of products in the component state
+        })
+      }
       this.setState({ loading: false })
+      console.log(this.state.products)
     } else {
       window.alert("Marketplace contract not deployed to detected network.")
     }

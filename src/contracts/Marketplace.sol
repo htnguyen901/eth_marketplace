@@ -86,5 +86,4 @@ contract Marketplace {
 		emit ProductPurchased(productCount, _product.name, _product.price, msg.sender, true);
 	}
 
-
 }
