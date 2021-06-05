@@ -43,15 +43,17 @@ class App extends Component {
     if (networkData) {
       const marketplace = web3.eth.Contract(Marketplace.abi, networkData.address)
       this.setState({ marketplace })
-      const productCount = await marketplace.methods.productCount.call() //call(): read the data
+      const productCount = await marketplace.methods.productCount().call() //call(): read the data
       this.setState({ productCount })
-      // Load products
-      for (var i; i <= productCount; i++) {
-        const product = await marketplace.methods.products(i).call() // read the data
+      console.log(productCount.toString())
+      //Load products
+      for (var i = 1; i <= productCount; i++) {
+        const product = await marketplace.methods.products(i).call()
         this.setState({
-          products: [...this.state.products, product] //add the product to the array of products in the component state
+          products: [...this.state.products, product]
         })
       }
+
       this.setState({ loading: false })
       console.log(this.state.products)
     } else {
@@ -88,7 +90,9 @@ class App extends Component {
             <main role="main" className = "col-lg-12 d-flex">
               { this.state.loading 
                 ? <div id="loader" className="text-center"><p className = "text-center">Loading...</p></div> 
-                : <Main createProduct={this.createProduct}/>
+                : <Main 
+                products= {this.state.products} 
+                createProduct={this.createProduct} />
               }
             </main>
           </div>
